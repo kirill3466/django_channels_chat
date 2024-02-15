@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-7y@@%&p6bh%j6i(&k@aomkx0v2!7oeou-54pi#@yoa!-$h*#g0
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # django apps
@@ -17,7 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'chat',
+    'core',
+    'user',
+    'room',
 ]
 
 MIDDLEWARE = [
@@ -35,7 +37,7 @@ ROOT_URLCONF = 'chat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -49,6 +51,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat.wsgi.application'
+ASGI_APPLICATION = 'chat.asgi.application'
 
 DATABASES = {
     'default': {
@@ -82,4 +85,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# user redirects
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/rooms/'
+LOGIN_URL = '/login/'
