@@ -17,3 +17,11 @@ def room(request, slug):
     return render(
         request, 'room/room.html', {'room': room, 'messages': messages}
     )
+
+
+@login_required
+def create_room(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        slug = request.POST.get('slug')
+    return render(request, 'room/create_room.html')
